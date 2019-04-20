@@ -92,16 +92,18 @@ gmpd_cc_threat <- left_join(gmpd_subset_cc, threat_subset, by = "HostCorrectedNa
 gmpd_cc_threat %>% 
   mutate(hostName = gsub(pattern = " ", replacement = "_", x = HostCorrectedName)) -> gmpd_cc_threat
 
-# read the phylacine dataset
+# read the joined GMPD + phylacine dataset
 phy <- read_csv("script4.csv")
 
 # filter out only those mammals that are present in gmpd_cc_threat 
 # and summarise the values of the other variables over them 
 phy %>%
-  select(hostName, hostHomeRange, massKG, groupSizePriUng, groupSizePriUng_max) %>%
-  filter(hostName %in% unique(gmpd_cc_threat$hostName))  %>%
-  group_by(hostName) %>%
-  summarize_all(mean) -> phy_subset
+  select(hostName, hostHomeRange, massKG, 
+         groupSizePriUng, 
+         groupSizeCar) %>%
+  filter(hostName %in% unique(gmpd_cc_threat$hostName)) -> phy_subset 
+
+phy_subset %<>% distinct(hostName, .keep_all = TRUE)
 
 # NOTE: Here too, not all mammals present in gmpd_cc_threat data are present in the the phylacine dataset.
 # run the following two codes to get an idea 

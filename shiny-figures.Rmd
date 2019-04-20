@@ -1,0 +1,16 @@
+---
+title: "Shiny static figures"
+output: pdf_document
+---
+
+
+```{r}
+
+library(tidyverse)
+library(magrittr)
+
+dat <- read.csv("./data/shiny_data.csv")
+
+
+```
+
