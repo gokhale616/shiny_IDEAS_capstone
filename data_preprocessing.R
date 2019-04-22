@@ -32,7 +32,7 @@ threat_data %>%
 # dealing with the GMPD file to extract information on other variables ---------------------------------------
 features_of_interest <- c("HostCorrectedName", "Group", "HostFamily",
                           "Longitude", "Latitude", 
-                          "PopulationType")
+                          "PopulationType", "HostEnvironment")
 
 
 gmpd <- read_csv(file = "GMPD_main.csv")
