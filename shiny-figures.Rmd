@@ -1,6 +1,8 @@
 ---
 title: "Shiny static figures"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -11,6 +13,9 @@ library(magrittr)
 
 dat <- read.csv("./data/shiny_data.csv")
 
+dat %<>% filter(Group!="primates")  # just for now bc disease is missing
+
+dat %<>% distinct(HostCorrectedName, .keep_all = TRUE)
 
 ```
 
@@ -26,7 +31,7 @@ table(dat$Group)
 
 # summary of group x threat
 dat %>%
-  group_by(Group, ThreatDis, ThreatDic) %>%
+  group_by(Group, ThreatDic2, ThreatDis) %>%
   summarise (n = n()) %>%
   mutate(freq = n / sum(n))
 
@@ -44,26 +49,92 @@ dat %>%
 
 dat %>%
   filter(ThreatDic==1, ThreatDis==1) %>%
-  mutate(type="ThreatDisease") -> dfD
+  mutate(type="ThreatDisease") -> dfTD
 
-dat2 <- bind_rows(dfNon, dfT, dfD)
+dat %>%
+  filter(ThreatDic==1, ThreatDis==1) %>%
+  mutate(type="Disease") -> dfD
+
+dat2 <- bind_rows(dfNon, dfT, dfTD, dfD)
 
 dat2 %>% group_by(Group, type) %>%
   tally()
 
+dat %>% 
+  group_by(Group) %>% 
+  tally()
+
 ```
 
-
-
 ```{r}
+dat2 %>% 
+  group_by(Group, type) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=Group)) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")
 
-dat2 %>%
-  filter(Group!="primates", continent !="Antarctica") %>%
-  ggplot(aes(HostFamily)) + 
-  geom_bar(aes(fill = type, stat="identity")) +
-  scale_y_continuous(labels = scales::percent_format()) + 
-  facet_grid(Group ~ continent, scales="free")
+# filter by group type - host family
+dat2 %>% 
+  filter(Group=="carnivores") %>%
+  group_by(HostFamily, type) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=HostFamily)) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+dat2 %>% 
+  filter(Group=="ungulates") %>%
+  group_by(HostFamily, type) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=HostFamily)) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# filter by continent
+dat2 %>% 
+  filter(continent=="North America") %>%
+  group_by(HostFamily, type) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=HostFamily)) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dat2 %>% 
+  filter(continent=="Africa") %>%
+  group_by(HostFamily, type) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=HostFamily)) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# filter by mass
+dat2 %>% 
+  filter(!is.na(massKG)) %>%
+  mutate(mass2=ifelse(massKG<75, 0, 1)) %>%
+  group_by(mass2, type, Group) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=factor(mass2))) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  facet_grid(Group ~ .) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# filter by home range
+dat2 %>% 
+  filter(!is.na(hostHomeRange)) %>%
+  mutate(range2 = ifelse(hostHomeRange < 75, 0, 1)) %>%
+  group_by(range2, type, Group) %>% 
+  tally() %>%
+  ggplot(aes(fill=type, y=n, x=factor(range2))) + 
+  geom_bar(stat="identity", position = "fill") + 
+  labs(y="", fill="")  + 
+  facet_grid(Group ~ .) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
 
