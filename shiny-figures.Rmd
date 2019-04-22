@@ -14,3 +14,56 @@ dat <- read.csv("./data/shiny_data.csv")
 
 ```
 
+
+```{r, eval=FALSE}
+# summary of threat variable
+table(dat$Threat)
+table(dat$ThreatDic)
+table(dat$ThreatDic2)
+
+# summary of group
+table(dat$Group)
+
+# summary of group x threat
+dat %>%
+  group_by(Group, ThreatDis, ThreatDic) %>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))
+
+```
+
+```{r}
+
+dat %>%
+  filter(ThreatDic==0, ThreatDis==0) %>%
+  mutate(type="NonThreatened") -> dfNon
+  
+dat %>%
+  filter(ThreatDic==1, ThreatDis==0) %>%
+  mutate(type="ThreatOther") -> dfT
+
+dat %>%
+  filter(ThreatDic==1, ThreatDis==1) %>%
+  mutate(type="ThreatDisease") -> dfD
+
+dat2 <- bind_rows(dfNon, dfT, dfD)
+
+dat2 %>% group_by(Group, type) %>%
+  tally()
+
+```
+
+
+
+```{r}
+
+dat2 %>%
+  filter(Group!="primates", continent !="Antarctica") %>%
+  ggplot(aes(HostFamily)) + 
+  geom_bar(aes(fill = type, stat="identity")) +
+  scale_y_continuous(labels = scales::percent_format()) + 
+  facet_grid(Group ~ continent, scales="free")
+
+
+```
+

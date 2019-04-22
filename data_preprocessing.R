@@ -30,7 +30,9 @@ threat_data %>%
   unique() -> mammal_names 
 
 # dealing with the GMPD file to extract information on other variables ---------------------------------------
-features_of_interest <- c("HostCorrectedName", "Longitude", "Latitude", "PopulationType")
+features_of_interest <- c("HostCorrectedName", "Group", "HostFamily",
+                          "Longitude", "Latitude", 
+                          "PopulationType")
 
 
 gmpd <- read_csv(file = "GMPD_main.csv")
