@@ -64,7 +64,11 @@ dat %>%
   group_by(Group) %>% 
   tally()
 
+
+#write.csv(dat2, "distinct-hosts.csv")
+
 ```
+
 
 ```{r}
 # threat variable on top 
