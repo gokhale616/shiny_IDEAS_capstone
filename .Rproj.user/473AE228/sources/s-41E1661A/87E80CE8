@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556051802380.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "166229547",
+    "id" : "87E80CE8",
+    "lastKnownWriteTime" : 1556051829,
+    "last_content_update" : 1556051829151,
+    "path" : "~/Desktop/shiny_IDEAS_capstone/paige/host.R",
+    "project_path" : "paige/host.R",
+    "properties" : {
+        "cursorPosition" : "55,0",
+        "scrollLine" : "38"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

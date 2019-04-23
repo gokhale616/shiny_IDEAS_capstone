@@ -2,6 +2,7 @@
 library(shiny)
 library(tidyverse)
 library(magrittr)
+library(plotly)
 
 app <- shinyApp(
   ui = fluidPage(
@@ -26,7 +27,7 @@ app <- shinyApp(
     plotOutput("plot")
   ),
   server = function(input, output) {
-    mammals <- read.csv("distinct-hosts.csv")
+    mammals <- read.csv("./paige/distinct-hosts.csv")
     
     dat <- reactive({
       
@@ -42,10 +43,10 @@ app <- shinyApp(
     
     output$plot <- renderPlot(
       # needs to be evaluated as a string
-      ggplot(dat(), aes_string(fill="type", y="n", x=input$grp)) + 
+      (ggplot(dat(), aes_string(fill="type", y="n", x=input$grp)) + 
         geom_bar(stat="identity", position = "fill") + 
         labs(x="", y="", fill="")  + 
-        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15))
+        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15)))
     )
   }
 )
