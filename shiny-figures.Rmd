@@ -1,12 +1,35 @@
 ---
-title: "Shiny static figures"
+title: "GMPD Dashboard Static Text and Figures"
 output: pdf_document
+urlcolor: blue
 editor_options: 
   chunk_output_type: console
+header-includes: \usepackage[section]{placeins}
 ---
 
+# Vulnerable mammals and their deadly parasites
 
-```{r}
+Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) dropped dead over the course of a few days. [Researchers called these events](https://www.theatlantic.com/science/archive/2018/01/why-did-two-thirds-of-this-weird-antelope-suddenly-drop-dead/550676/?utm_source=twb) "unprecedented and unworldly". The killer? A bacterium, _Pasteurella multocida_. ![_Saiga tatarica_. Image from IUCN.](saiga-IUCN.jpg){height=250px}
+
+Saiga, a species previously decimated by poaching, are endangered like so many other wild animals. Threatening factors like poaching and habitat might make animals more vulnerable to parasites. Indeed, threatened mammals are more likely to have parasites listed in their species descriptions by the [IUCN](iucnredlist.org). And unfortunately, the number of endangered animals is on the rise. 
+
+Which mammals are most vulnerable to parasites? Which characteristics are associated with vulnerability to parasites? Use this interactive mammal explorer to find out. 
+
+# Why are animals from some taxonomic families especially vulnerable to parasites? 
+
+These interactive plots illustrate how mammals from some taxonomic families are more vulnerable to deadly parasites. In particular, carnivores in the Canidae, Otariidae, and Phocidae were likely to have deadly parasites. In ungulates, many families have a high proportion of threatened species overall but those in Bovidae were most likely to have deadly parasites. 
+
+These families include all major groups of domesticated livestock (dogs, cats, goats, sheep, cattle, and pigs) showing the dangers of cross-species transmission that pets and livestock pose to  closely related wild species. 
+
+# Why are some parasites more threatening? 
+
+TBD.
+
+\newpage
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+knitr::opts_chunk$set(cache=TRUE, fig.path = "static-figures/", 
+                      warning = FALSE, message=FALSE, echo=FALSE, fig.height = 6) 
 
 library(tidyverse)
 library(magrittr)
@@ -147,4 +170,5 @@ dat2 %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
+
 
