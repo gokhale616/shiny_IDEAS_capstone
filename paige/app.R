@@ -18,10 +18,10 @@ app <- shinyApp(
                                    "Europe" = "Europe",
                                    "North America" = "North America"), 
                        selected = c("Africa", "Asia", "Australia", "Europe", "North America")),
-    selectInput(inputId = "grpVar", 
+    selectInput(inputId = "grp", 
                 label = "Grouping variable:",
-                choices = c("Host family" = "HostFamily"), 
-                selected = c("Africa", "Asia", "Australia", "Europe", "North America")),
+                choices = c("Family" = "HostFamily", 
+                            "Environment" = "HostEnvironment")),
     
     plotOutput("plot")
   ),
@@ -33,17 +33,19 @@ app <- shinyApp(
       foo <- mammals %>%
         filter(Group %in% input$mamOrd) %>%
         filter(continent %in% input$contin) %>%
-        group_by(HostFamily, type) %>% 
-        tally()
+        # unclear why this .dots arg is neccessary but it is... 
+        group_by(.dots=input$grp, type) %>% 
+        tally() %>% data.frame()
       
       return(foo)
     })
     
     output$plot <- renderPlot(
-      ggplot(dat(), aes(fill=type, y=n, x=HostFamily)) + 
+      # needs to be evaluated as a string
+      ggplot(dat(), aes_string(fill="type", y="n", x=input$grp)) + 
         geom_bar(stat="identity", position = "fill") + 
-        labs(y="", fill="")  + 
-        theme(axis.text.x = element_text(angle = 45, hjust = 1))
+        labs(x="", y="", fill="")  + 
+        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15))
     )
   }
 )
