@@ -1,0 +1,201 @@
+---
+title: "GLOBAL MAMMALS DASHBOARD"
+output:
+  flexdashboard::flex_dashboard:
+    theme: cerulean # can choose from: cosmo, bootstrap, cerulean, journal, flatly, readable, spacelab, united, lumen, paper, sandstone, simplex, yeti
+    storyboard: true
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# STILL TO DO: MAKE IT LOAD FASTER
+
+rm(list=ls())
+
+### Load libraries -----
+# Will automatically install any libraries it can't find
+packages <- c("flexdashboard", "shiny", "knitr", "tidyverse", "magrittr", "leaflet", "RgoogleMaps", "shinyBS", "plotrix", "shinyjs", "cowplot")
+package.check <- lapply(packages, FUN = function(x) {
+  if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = TRUE, repos = "http://cran.us.r-project.org")
+    library(x, character.only = TRUE)
+  }
+})
+
+opts_chunk$set(root.dir = getwd())
+
+datMap <- read_csv("data/shiny_data2.csv")
+Out_list <- reactiveValues(MammalsDat = datMap)
+```
+
+Learn about threats to mammals... {.storyboard}
+=========================================
+### Threats to mammals...
+
+```{r plot1}
+readRDS("shiny-figures_files/plot_byThreat.RDS")
+```
+
+***
+
+Placeholder for longer descriptive text for the THREATS TO MAMMALS story panel...put longer commentary here
+
+### Threats by family... 
+
+```{r plot2}
+readRDS("shiny-figures_files/plot_byFamily.RDS")
+```
+
+***
+
+Placeholder for longer descriptive text for the THREATS BY FAMILY story panel...put longer commentary here
+
+### Threats by continent... 
+
+```{r plot3}
+readRDS("shiny-figures_files/plot_byCont.RDS")
+```
+
+***
+
+Placeholder for longer descriptive text for the THREATS BY CONTINENT story panel...put longer commentary here
+
+### Threats by body mass... 
+
+```{r plot4}
+readRDS("shiny-figures_files/plot_byMass.RDS")
+```
+
+***
+
+Placeholder for longer descriptive text for the THREATS BY MASS story panel...put longer commentary here
+
+### Threats by home range... 
+
+```{r plot5}
+readRDS("shiny-figures_files/plot_byHR.RDS")
+```
+
+***
+
+Placeholder for longer descriptive text for the THREATS BY HOME RANGE story panel...put longer commentary here
+
+Explore maps...
+====================================== 
+Inputs {.sidebar data-width=250}
+-------------------------------------
+```{r maps_input}
+
+radioButtons("sel_MapOrder",
+            label = "Select a host order:",
+            choices = c("ALL", "Artiodactyla", "Carnivora", "Primata", "Perissodactyla"),
+            selected = "ALL")
+    
+radioButtons("sel_MapThreat", 
+             label = "Choose a threat status:", 
+             choiceNames = list("Least Concern", "Near Threatened", "Vulnerable", "Endangered", "Critically Endangered", "Extinct"), 
+             choiceValues = list("0", "1", "2", "3", "4", "5"), #>>>>>>>>>>>> CHECK WHAT THESE NUMBERS MEAN
+             selected = "0")
+
+radioButtons("sel_MapContinent", 
+             label = "Select a continent:", 
+             choices = list("ALL", "Africa", "Asia", "Europe", "North America", "South America", "Australia"),
+             selected = "ALL")
+
+renderUI({
+  if(!is.null(Out_list$MammalsDat) & !is.null(input$sel_MapOrder) & !is.null(input$sel_MapContinent) & !is.null(input$sel_MapThreat)) {
+    
+     mammals <- 
+       ifelse(input$sel_MapContinent=="ALL", subset(Out_list$MammalsDat, Threat==as.numeric(input$sel_MapThreat)),
+         subset(Out_list$MammalsDat, Threat==as.numeric(input$sel_MapThreat) & continent==input$sel_MapContinent))
+     
+     if(input$sel_MapOrder!="ALL") {mammals <- subset(mammals, order==input$sel_MapOrder)}
+     
+     mammalsNam <- unique(sort(mammals$hostName)) %>% unlist()
+     
+     selectInput("sel_MapSpecies",
+                 label = "Select a species:",
+                 choices = mammalsNam,
+                 selected = mammalsNam[1])
+    }
+})
+
+# renderUI({
+#   if(!is.null(input$sel_MapPark) & !is.null(Out_list$CUPNbounds)) {
+#     CUPNmapbounds_SP <- subset(Out_list$CUPNbounds, SubUnitLab==input$sel_MapPark)
+# map_zoom <- min(MaxZoom(lonrange = range(CUPNmapbounds_SP$long), latrange = range(CUPNmapbounds_SP$lat)))
+# 
+#   sliderInput("sel_MapZoom", label = "Set map zoom (smaller = wider view):", min = map_zoom - 8, max = 17, value = map_zoom - 0.25, step = 0.25, ticks = FALSE, dragRange = FALSE, width = "85%")
+#     }
+#   })
+```
+
+Column
+-------------------------------------
+```{r maps}
+# output$vegmap = renderLeaflet({
+#   validate(need(!is.null(Out_list$CUPNbounds) & !is.null(Out_list$MapDat), message = FALSE))
+#   Dat_df = Out_list$MapDat[[input$sel_MapMetric]]
+#   if(input$sel_MapMetric == "OakHick") {
+#     Dat_df = Out_list$OakHick[["OHfinal_df"]] %>%
+#       dplyr::rename(Metric = MeanOSI) %>%
+#       dplyr::mutate(Poptext = paste0(Plot, " (", Year, "):", "<br/>", Metric, " (95% CI ", Low95OSI, ", ", High95OSI, ")"))
+#   }
+#   if(input$sel_MapMetric == "HPExoticCov") {
+#     Dat_df = subset(Dat_df, PlantName == input$sel_HPExotic)
+#   }
+#   
+#   if(!is.null(input$sel_MapPark) & !is.null(input$sel_MapCycle) & !is.null(input$sel_MapMetric) & !is.null(input$sel_MapZoom)) {
+#   
+#   MapDat_df <- subset(Dat_df, SubPark==input$sel_MapPark & Cycle==input$sel_MapCycle)
+#   
+#   CUPNmapbounds_SP <- subset(Out_list$CUPNbounds, SubUnitLab==input$sel_MapPark)
+#   map_center <- c(mean(c(min(CUPNmapbounds_SP$long), max(CUPNmapbounds_SP$long))), mean(c(min(CUPNmapbounds_SP$lat), max(CUPNmapbounds_SP$lat))))
+# 
+#   if(!is.null(MapDat_df)) {
+#     basemap <- leaflet(data = MapDat_df, options = leafletOptions(zoomControl = FALSE, zoomSnap = 0.25)) %>%
+#       addProviderTiles("Esri.WorldImagery") %>%
+#       setView(lng = map_center[1], lat = map_center[2], zoom = input$sel_MapZoom)
+#     
+#     pieces <- unique(unlist(subset(Out_list$CUPNbounds, SubUnitLab==input$sel_MapPark, select = "piece")))
+#     for (p in pieces) {
+#       d <- subset(Out_list$CUPNbounds, SubUnitLab==input$sel_MapPark & piece==p)
+#       basemap %<>%
+#         addPolylines(lat = d$lat, lng = d$long, weight = 2, color = "yellow", opacity = 1)
+#     }
+# 
+#     binvals <- switch(input$sel_MapMetric,
+#         OakHick = c(xmin = 0, xmax = 2, xcut1 = 0.5, xcut2 = 1, xstep = 0.1, title = "Oak-Hickory OSI", rev = TRUE),
+#         NativeRich = c(xmin = 0, xmax = 10*ceiling(max(Out_list$MapDat$NativeRich$Metric)/10), xcut1 = 40, xcut2 = 60, xstep = 2, title = "# native species", rev = TRUE),
+#         ExoticRich = c(xmin = 0, xmax = 2*ceiling(max(Out_list$MapDat$ExoticRich$Metric)/2), xcut1 = 4, xcut2 = 8, xstep = 2, title = "# exotic species", rev = FALSE),
+#         ExoticCov = c(xmin = 0, xmax = 100, xcut1 = 5, xcut2 = 15, xstep = 5, title = "% exotic cover", rev = FALSE),
+#         HPExoticCov = c(xmin = 0, xmax = 100, xcut1 = 2, xcut2 = 4, xstep = 2, title = "% species cover", rev = FALSE))
+#     
+#     ColorScheme <- switch(input$sel_ColorScheme, WBO = c("#FFFFFF", "#9ad0f3", "#e79f00"), WOR = c("#FFFFFF", "#e79f00", "#D55E00"))
+#     
+#     pal_bins <- colorBin(ColorScheme, bins = c(as.numeric(binvals["xmin"]), input$sel_MapScore[1], input$sel_MapScore[2], as.numeric(binvals["xmax"])), reverse = as.logical(binvals["rev"]))
+#     
+#     # continuous color ramp
+#     validate(
+#       need(input$sel_MapScore[1] - as.numeric(binvals["xmin"]) > 0, message = FALSE),
+#       need(as.numeric(binvals["xmax"]) - input$sel_MapScore[2] > 0, message = FALSE))
+#     rc1 <- colorRampPalette(colors = ColorScheme[1:2], bias = 5)((input$sel_MapScore[1] - as.numeric(binvals["xmin"]))/as.numeric(binvals["xstep"])) # vector of color for values smaller than first cut
+#     rc2 <- colorRampPalette(colors = ColorScheme[2:3], bias = 5)((as.numeric(binvals["xmax"]) - input$sel_MapScore[2])/as.numeric(binvals["xstep"]))
+#     pal_cont <- colorNumeric(c(rc1, rc2), domain = c(as.numeric(binvals["xmin"]), as.numeric(binvals["xmax"])), reverse = as.logical(binvals["rev"]))
+#     
+#     if(input$sel_ColorType=="score") {
+#       basemap %>%
+#         addCircleMarkers(lng = ~Longitude, lat = ~Latitude, opacity = 1, color = ~pal_bins(Metric), radius = 6, fillOpacity = ~ifelse(Metric==0, 0.2, 1), fill = TRUE, popup = ~Poptext) %>%
+#         addLegend(position = "bottomright", pal = pal_bins, values = c(as.numeric(binvals["xmin"]), as.numeric(binvals["xmax"])), title = as.character(binvals["title"]), opacity = 1)
+#     } else {
+#       if(input$sel_ColorType=="cont") {
+#       basemap %>%
+#         addCircleMarkers(lng = ~Longitude, lat = ~Latitude, opacity = 1, color = ~pal_cont(Metric), radius = 6, fillOpacity = ~ifelse(Metric==0, 0.2, 1), fill = TRUE, popup = ~Poptext) %>%
+#         addLegend(position = "bottomright", pal = pal_cont, values = c(as.numeric(binvals["xmin"]), as.numeric(binvals["xmax"])), title = as.character(binvals["title"]), opacity = 1)
+#       }
+#     }
+#   }
+#   }
+# })
+# leafletOutput('vegmap', height=600)
+```
