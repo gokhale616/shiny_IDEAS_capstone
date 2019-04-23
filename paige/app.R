@@ -1,4 +1,7 @@
 # The simplest bargraph 
+library(shiny)
+library(tidyverse)
+library(magrittr)
 
 app <- shinyApp(
   ui = fluidPage(
