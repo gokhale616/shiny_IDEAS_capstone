@@ -24,6 +24,8 @@ These interactive plots illustrate how mammals from some taxonomic families are 
 
 These families include all major groups of domesticated livestock (dogs, cats, goats, sheep, cattle, and pigs) showing the dangers of cross-species transmission that pets and livestock pose to  closely related wild species. 
 
+Caption for host figure: The proportions of hosts that are threatened versus not threatened varies (_NonThreatened_) by host family and other grouping variables. Of the _threatened_ species, _ThreatOther_ shows the proportion threatened by a factor other than disease while ThreatDisease shows the proportion threatened by disease and other factors. Finally, some of the species were not threatened according to IUCN but still had diseases negatively affecting local populations (_Disease_). Data were collected from the IUCN species descriptions (for details see Pederson et al., Conservation Biology, 2007).
+
 # Why are some parasites more threatening? 
 
 TBD.
@@ -190,12 +192,25 @@ parRaw %>% rename(hostSpecies=`MSW 93 Binomial`,
   select(-Reference, -`IUCN?`) %>%
   mutate(type=gsub(pattern = " .*", replacement = "", type)) -> parDat
 
-parDat %>% 
+parDat %<>% 
   filter(!is.na(type)) %>%
   group_by(order, type) %>%
   tally()
 
-write.csv(parDat, "paige/host-par.csv")
+#write.csv(parDat, "paige/host-par.csv")
+
+```
+
+```{r}
+
+parDat <- read_csv("paige/host-par.csv")
+
+parDat %>%
+  ggplot(aes(x=type, y=n, fill=order)) + 
+  geom_bar(width = 1, stat = "identity", color="black") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  labs(y="", fill="", x="") 
+
 
 ```
 

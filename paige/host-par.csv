@@ -1,102 +1,15 @@
-"","order","hostSpecies","parasite","genus","species","commonName","type"
-"1","Artiodactyla","Alcelaphus buselaphus","no parasite indicated","Some evidence that Sarcoptic mange may cause mortality from the published litereture.",NA,NA,NA
-"2","Artiodactyla","Antidorcas marsupialis","ANTHRAX","Bacillus","anthracis","anthrax","Bacteria"
-"3","Artiodactyla","Beatragus hunteri","no parasite indicated",NA,NA,NA,NA
-"4","Artiodactyla","Bos frontalis","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"5","Artiodactyla","Bos frontalis","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"6","Artiodactyla","Bos frontalis","ANTHRAX","Bacillus","anthracis","anthrax","Bacteria"
-"7","Artiodactyla","Bos grunniens","BRUCELLOSIS","Brucella","abortus","Brucellosis","Bacteria"
-"8","Artiodactyla","Bos javanicus","JEMBRANA DISEASE VIRUS","Lentivirus","Jembrana disease vius","JDV","Virus"
-"9","Artiodactyla","Bos javanicus","MALIGNANT CATTARHAL FEVER (OHV 2)","Rhadinovirus","Ovineherpese virus 2","Sheep-associated malignant catarrhal fever (SA-MCF) or (OvHV-2)","Virus"
-"10","Artiodactyla","Bos javanicus","BRUCELLOSIS","Brucella","abortus","Brucellosis","Bacteria"
-"11","Artiodactyla","Bos sauveli","no parasite indicated",NA,NA,NA,NA
-"12","Artiodactyla","Bubalus bubalis","no parasite indicated - because water buffalo are domesticated around the world - it was not possible to detect if there are a specific parasite that is negatively affected WILD water buffalo.",NA,NA,NA,NA
-"13","Artiodactyla","Bubalus depressicornis","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"14","Artiodactyla","Bubalus depressicornis","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"15","Artiodactyla","Bubalus mindorensis","no parasite indicated - no published references in the last 30 years",NA,NA,NA,NA
-"16","Artiodactyla","Bubalus quarlesi","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"17","Artiodactyla","Bubalus quarlesi","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"18","Artiodactyla","Budorcas taxicolor","no parasite indicated",NA,NA,NA,NA
-"19","Artiodactyla","Connochaetes taurinus","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"20","Artiodactyla","Connochaetes taurinus","FOOT ROT","Fusobacterium","necrophorum","Necrobacillosis or ""foot rot"" or ""foot abcessess'","Bacteria"
-"21","Artiodactyla","Connochaetes taurinus","ANTHRAX","Bacillus","anthracis","anthrax","Bacteria"
-"22","Artiodactyla","Connochaetes taurinus","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"23","Artiodactyla","Damaliscus lunatus","ANTHRAX","Bacillus","anthracis","anthrax","Bacteria"
-"24","Artiodactyla","Hemitragus jayakari","no parasite indicated",NA,NA,NA,NA
-"25","Artiodactyla","Ovis canadensis","PSOROPTIC SCABIES","Psoroptes","sp.","Psoroptic scabies","Arthropod"
-"26","Artiodactyla","Ovis canadensis","PASTEURELLOSIS (M. haemolytica)","Pasteurella","multocida","Pasteurellosis","Bacteria"
-"27","Artiodactyla","Ovis canadensis","INFECTIOUS KERATOCONJUNCTIVITIS (Chlamydia)","Chlamydia","sp.","Infectious Keratoconjuctivitis","Bacteria"
-"28","Artiodactyla","Ovis canadensis","INFECTIOUS KERATOCONJUNCTIVITIS (Mycoplasma)","Mycoplasma","conjunctivae","Infectious Keratoconjuctivitis","Bacteria"
-"29","Artiodactyla","Ovis canadensis","PASTEURELLOSIS (P. multicoda)","Mannheimia","haemolytica","Pasteurellosis","Bacteria"
-"30","Artiodactyla","Ovis canadensis","LUNGWORMS","Protostrongylus","sp.","Lungworm","Helminth"
-"31","Artiodactyla","Ovis orientalis (vignei)","no parasite indicated",NA,NA,NA,NA
-"32","Artiodactyla","Procapra gutturosa","PASTEURELLOSIS","Pasteurella","sp.","Pasteurellosis","Bacteria"
-"33","Artiodactyla","Procapra gutturosa","NECROBACILLOSIS","Fusobacterium","necrophorum","Necrobacillosis or ""foot rot"" or ""foot abcessess'","Bacteria"
-"34","Artiodactyla","Syncerus caffer","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"35","Artiodactyla","Syncerus caffer","BOVINE TUBERCULOSIS","Mycobacterium","tuberculosis","Bovine TB","Bacteria"
-"36","Artiodactyla","Syncerus caffer","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"37","Artiodactyla","Tragelaphus imberbis","RINDERPEST","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"38","Artiodactyla","Tragelaphus imberbis","BOVINE TUBERCULOSIS","Mycobacterium","tuberculosis","Bovine TB","Bacteria"
-"39","Artiodactyla","Tragelaphus imberbis","FOOT AND MOUTH","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"40","Artiodactyla","Tragelaphus imberbis","ANTHRAX","Bacillus","anthracis","anthrax","Bacteria"
-"41","Artiodactyla","Tragelaphus imberbis","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"42","Artiodactyla","Dama dama","no parasite indicated",NA,NA,NA,NA
-"43","Artiodactyla","Hippocamelus antisensis","no parasite indicated",NA,NA,NA,NA
-"44","Artiodactyla","Hippocamelus bisulcus","THIN NECKED BLADDER WORM","Taenia","hydatigena","Thin necked Bladder worm","Helminth"
-"45","Artiodactyla","Hippocamelus bisulcus",NA,NA,NA,NA,NA
-"46","Artiodactyla","Ozotoceros bezoarticus","no parasite indicated",NA,NA,NA,NA
-"47","Artiodactyla","Phacochoerus aethiopicus","RINDERPEST - caused final extintion of P. aethiopicus aethiopicus (Cape warthog)","Morbillivius","Rinderpest virus","Rinderpest","Virus"
-"48","Artiodactyla","Sus cebifrons","no parasite indicated",NA,NA,NA,NA
-"49","Artiodactyla","Sus philippensis","no parasite indicated",NA,NA,NA,NA
-"50","Artiodactyla","Babyrousa babyrussa","SARCOPTIC MANGE/ UNIDENTIFIED SKIN DISEASE","Sarcoptes","scabei","Sarcoptic mange","Insecta"
-"51","Artiodactyla","Catagonus wagneri","FOOT AND MOUTH (?)","Aphthovirus","Foot and Mouth Disease Virus","FMDV","Virus"
-"52","Artiodactyla","Catagonus wagneri","RABIES (?)","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"53","Carnivora","Alopex lagopus","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"54","Carnivora","Alopex lagopus","MANGE","Otodectes","cynotis","Ear Canker Mite","Arthropod"
-"55","Carnivora","Alopex lagopus","TOXOPLASMOSIS","Toxoplasma","gondii","Toxoplasmosis","Protozoan"
-"56","Carnivora","Alopex lagopus","ENCEPHALITOZOONOSIS","Enchepalitozoon","cuniculi","Enchephalitozoonosis","Fungi"
-"57","Carnivora","Atelocynus microtis","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"58","Carnivora","Atelocynus microtis","PARVOVIRUS","Parvovirus","canine parvovirus","Parvovirus canine parvovirus","Virus"
-"59","Carnivora","Canis lupus","SARCOPTIC MANGE","Sarcoptes","scabei","Sarcoptic mange","Insecta"
-"60","Carnivora","Canis lupus","PARVOVIRUS","Parvovirus","canine parvovirus","Parvovirus canine parvovirus","Virus"
-"61","Carnivora","Canis lupus","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"62","Carnivora","Canis lupus","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"63","Carnivora","Canis simensis","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"64","Carnivora","Canis simensis","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"65","Carnivora","Chrysocyon brachyurus","Giant Kidney Worm","Dictophyma","renale","Giant kidney worm","Helminth"
-"66","Carnivora","Chrysocyon brachyurus","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"67","Carnivora","Chrysocyon brachyurus","PARVOVIRUS","Parvovirus","canine parvovirus","Parvovirus canine parvovirus","Virus"
-"68","Carnivora","Cuon alpinus","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"69","Carnivora","Cuon alpinus","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"70","Carnivora","Cuon alpinus","MANGE","Sarcoptes","scabei","Sarcoptic mange","Arthropod"
-"71","Carnivora","Cuon alpinus","PARVOVIRUS","Parvovirus","canine parvovirus","Parvovirus canine parvovirus","Virus"
-"72","Carnivora","Lycaon pictus","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"73","Carnivora","Lycaon pictus","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"74","Carnivora","Lycaon pictus","TOXOPLASMOSIS","Toxoplasma","gondii","Toxoplasma gondii","Protozoan"
-"75","Carnivora","Nyctereutes procyonoides","SARCOPTIC MANGE","Sarcoptes","scabei","Sarcoptic mange","Arthropod"
-"76","Carnivora","Nyctereutes procyonoides","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"77","Carnivora","Nyctereutes procyonoides","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"78","Carnivora","Otocyon megalotis","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"79","Carnivora","Otocyon megalotis","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"80","Carnivora","Pseudalopex fulvipes","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"81","Carnivora","Urocyon littoralis","ANGIOCAULUS GUBERNACULATUS","Angiocaulus","gubernaculatus","Nematode","Helminth"
-"82","Carnivora","Urocyon littoralis","HEARTWORM","Dirofilaria","immitis","Heartworm","Helminth"
-"83","Carnivora","Vulpes bengalensis","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"84","Carnivora","Vulpes bengalensis","CDV - DISTEMPER","Morbillivirus","canine distemper virus","Morbillivirus canine distemper virus",NA
-"85","Carnivora","Felis silvestris","FeLV - FELINE LEUKEMIA","Gammaretrovirus","feline leukemia virus","Gammaretrovirus feline leukemia virus","Virus"
-"86","Carnivora","Prionailurus bengalensis","no parasite indicated",NA,NA,NA,NA
-"87","Carnivora","Puma concolor","PSEUDO RABIES","Varicellovirus","pseudorabies","Varicellovirus pseudorabies","Virus"
-"88","Carnivora","Puma concolor","FELINE PANLEUKOPENIA (feline distemper virus)","Parvovirus","feline panleukopenia virus","Parvovirus feline panleukopenia virus","Virus"
-"89","Carnivora","Puma concolor","RABIES","Lyssavirus","rabies","Lyssavirus rabies","Virus"
-"90","Carnivora","Puma concolor","FELINE CALICIVIRUS (FCoV)","Vesivirus","feline calicivirus","Feline calicivirus","Virus"
-"91","Carnivora","Puma concolor","FELINE CORONAVIRUS","Coronavirus","feline infectious peritonitis","Coronavirus feline infectious peritonitis","Virus"
-"92","Carnivora","Lontra felina","no parasite indicated",NA,NA,NA,NA
-"93","Carnivora","Lontra provocax","no parasite indicated",NA,NA,NA,NA
-"94","Carnivora","Eumetopias jubatus","no parasite indicated",NA,NA,NA,NA
-"95","Cetacea","Cephalorhynchus hectori","no parasite curently found to cause declines",NA,NA,NA,NA
-"96","Carnivora","Monachus monachus","MONK SEAL MORBILIVIRUS","Morbillivirus","monk seal distempter","Morbillivirus monk seal distemper virus",NA
-"97","Dasyuromorphia","Dasyurus hallucatus","TOXOPLASMOSIS","Toxoplasma","gondii","Toxoplasma gondii","Protozoan"
-"98","Dasyuromorphia","Parantechinus apicalis","Plant pathogen threatens its habitat",NA,NA,NA,NA
-"99","Peramelemorphia","Perameles gunnii","TOXOPLASMOSIS","Toxoplasma","gondii","Toxoplasma gondii","Protozoan"
-"100","Rodentia","Cynomys parvidens","YERSINIA PESTIS","Yersinia","pestis","Plague","Bacteria"
-"101","Sirenia","Trichechus manatus","no parasite curently found to cause declines",NA,NA,NA,NA
+"","order","type","n"
+"1","Artiodactyla","Arthropod",1
+"2","Artiodactyla","Bacteria",16
+"3","Artiodactyla","Helminth",2
+"4","Artiodactyla","Insecta",1
+"5","Artiodactyla","Virus",18
+"6","Carnivora","Arthropod",3
+"7","Carnivora","Fungi",1
+"8","Carnivora","Helminth",3
+"9","Carnivora","Insecta",1
+"10","Carnivora","Protozoan",2
+"11","Carnivora","Virus",18
+"12","Dasyuromorphia","Protozoan",1
+"13","Peramelemorphia","Protozoan",1
+"14","Rodentia","Bacteria",1

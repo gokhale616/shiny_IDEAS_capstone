@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556052504389.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9D22A3DB",
+    "lastKnownWriteTime" : 1556054934,
+    "last_content_update" : 1556054934966,
+    "path" : "~/Desktop/shiny_IDEAS_capstone/dashboard-text-figures.Rmd",
+    "project_path" : "dashboard-text-figures.Rmd",
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "26,90",
+        "scrollLine" : "37"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
