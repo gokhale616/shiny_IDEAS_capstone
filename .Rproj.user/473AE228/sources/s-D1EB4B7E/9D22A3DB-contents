@@ -205,11 +205,26 @@ parDat %<>%
 
 parDat <- read_csv("paige/host-par.csv")
 
-parDat %>%
-  ggplot(aes(x=type, y=n, fill=order)) + 
+plotDat <- filter(parDat, order %in% c("Artiodactyla", "Carnivora"))
+
+foo <- plotDat %>% 
+   group_by(type) %>% 
+   summarise(tot=sum(n)) %>%
+   arrange(desc(tot))
+
+plotDat %>% 
+  group_by(type) %>% 
+  summarise(tot=sum(n)) %>%
+  arrange(tot) %>%
+  mutate(lab.ypos = cumsum(tot) - 0.5*tot) %>%
+  # meat of the plot
+  ggplot(aes(x="", y=tot, fill=factor(type, levels = foo$type))) + 
   geom_bar(width = 1, stat = "identity", color="black") + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(y="", fill="", x="") 
+  coord_polar("y", start=0) + 
+  # make it not look so terrible
+  geom_text(aes(y = lab.ypos, label = tot), color = "white", size=7.5) + 
+  labs(x="", y="", fill="") + theme_void() + 
+  theme(legend.text=element_text(size=rel(1.5)))
 
 
 ```

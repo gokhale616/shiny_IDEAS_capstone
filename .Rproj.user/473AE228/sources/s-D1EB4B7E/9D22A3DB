@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "9D22A3DB",
-    "lastKnownWriteTime" : 1556054934,
-    "last_content_update" : 1556054934966,
+    "lastKnownWriteTime" : 1556067330,
+    "last_content_update" : 1556067330502,
     "path" : "~/Desktop/shiny_IDEAS_capstone/dashboard-text-figures.Rmd",
     "project_path" : "dashboard-text-figures.Rmd",
     "properties" : {
         "chunk_output_type" : "console",
-        "cursorPosition" : "26,90",
-        "scrollLine" : "37"
+        "cursorPosition" : "226,48",
+        "scrollLine" : "213"
     },
     "relative_order" : 3,
     "source_on_save" : false,

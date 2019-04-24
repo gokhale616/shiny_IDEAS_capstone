@@ -43,11 +43,13 @@ app <- shinyApp(
     
     output$plot <- renderPlot(
       # needs to be evaluated as a string
-      (ggplot(dat(), aes_string(fill="type", y="n", x=input$grp)) + 
+      ggplot(dat(), aes_string(fill="type", y="n", x=input$grp)) + 
         geom_bar(stat="identity", position = "fill", color="black") + 
         labs(x="", y="", fill="")  + 
-        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
-              legend.text=element_text(size=rel(1.5))))
+        theme_minimal() + 
+        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15),
+              axis.text.y = element_text(size=20),
+              legend.text=element_text(size=rel(1.5))) 
     )
   }
 )
