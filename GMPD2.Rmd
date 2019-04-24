@@ -2,8 +2,8 @@
 title: "GLOBAL MAMMALS DASHBOARD"
 output:
   flexdashboard::flex_dashboard:
+    orientation: columns
     theme: cerulean # can choose from: cosmo, bootstrap, cerulean, journal, flatly, readable, spacelab, united, lumen, paper, sandstone, simplex, yeti
-    storyboard: true
 runtime: shiny
 ---
 
@@ -14,7 +14,7 @@ rm(list=ls())
 
 ### Load libraries -----
 # Will automatically install any libraries it can't find
-packages <- c("flexdashboard", "shiny", "knitr", "tidyverse", "magrittr", "leaflet", "RgoogleMaps", "shinyBS", "plotrix", "shinyjs", "cowplot")
+packages <- c("flexdashboard", "shiny", "knitr", "tidyverse", "magrittr", "leaflet", "RgoogleMaps", "shinyBS", "plotrix", "shinyjs", "cowplot", "plotly")
 package.check <- lapply(packages, FUN = function(x) {
   if (!require(x, character.only = TRUE)) {
     install.packages(x, dependencies = TRUE, repos = "http://cran.us.r-project.org")
@@ -23,64 +23,118 @@ package.check <- lapply(packages, FUN = function(x) {
 })
 
 opts_chunk$set(root.dir = getwd())
-
-datMap <- read_csv("data/shiny_data2.csv")
-Out_list <- reactiveValues(MammalsDat = datMap)
+mammals <- read.csv("distinct-hosts.csv")
+mammalsMap <- read_csv("data/shiny_data2.csv")
+Out_list <- reactiveValues(mammals = mammals, mammalsMap = mammalsMap)
 ```
 
-Learn about threats to mammals... {.storyboard}
+About
 =========================================
-### Threats to mammals...
-
-```{r plot1}
-readRDS("shiny-figures_files/plot_byThreat.RDS")
+Column {data-width=250}
+-------------------------------------
+```{r images, echo = FALSE, out.width="60%"}
+htmltools::img(src="images/saiga-IUCN.jpg", width = "100%", style="display: block; margin-top:-30px; margin-bottom:0px; margin-right:40px; margin-left:-30px")
+htmltools::img(src="images/bacteria_crop.jpg", width = "100%", style="display: block; margin-top:0px; margin-bottom:0px; margin-right:40px; margin-left:-30px")
+#, style="display: block; margin-left: auto; margin-right: auto")
 ```
 
-***
+Column {data-width=350}
+-------------------------------------
+#### <font size="5"> Parasites that Threaten Mammals from Around the World: \n An interactive dashboard inspired by the GMPD</font> 
 
-Placeholder for longer descriptive text for the THREATS TO MAMMALS story panel...put longer commentary here
+<font size="4"> Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) died course of a few days. Researchers called these events “unprecedented and un-worldly”. A bacterium, Pasteurella multocida, isolated from the blood of these animals was the cause.
 
-### Threats by family... 
+Saiga, a species previously decimated by poaching, are endangered like many other wild animals. Threatening factors like poaching and habitat make animals more vulnerable to parasites. On top of being threatened by other factors, mammals are more likely to be impacted by parasitism as well IUCN. Since the the number of endangered animals is on the rise, understanding patterns of parasitism is important for conservationists and wildlife managers.
 
-```{r plot2}
-readRDS("shiny-figures_files/plot_byFamily.RDS")
+This dashboard is intended to be a resource for conservationists and undergraduate classrooms to visualize patterns of disease in threatened mammals.</font>
+
+#### <font size="4"> Explore:</font>
+
+* <font size="4"> Which mammals are most vulnerable to parasites?</font>
+
+* <font size="4"> Which characteristics are associated with vulnerability to parasites?</font>
+
+Column {data-width=10}
+-------------------------------------
+
+Explore Hosts
+=========================================
+Inputs {.sidebar data-width=300}
+-------------------------------------
+```{r input_hosts}
+sliderInput(inputId = "masskg",
+                label = "Less than (Kg):",
+                value = 5, min = 0.5, max = 1000)
+
+    sliderInput(inputId = "homerange",
+                label = "Less than (km sqrd.)",
+                value = 10, min = 0.02, max = 77500)
+
+    checkboxGroupInput(inputId = "mamOrd",
+                       label = "Mammal order:",
+                       choices = c("Carnivores" = "carnivores",
+                                   "Ungulates" = "ungulates"),
+                       selected = c("carnivores", "ungulates"))
+
+    checkboxGroupInput(inputId = "contin",
+                       label = "Continent:",
+                       choices = c("Africa" = "Africa",
+                                   "Asia" = "Asia",
+                                   "Australia" = "Australia",
+                                   "Europe" = "Europe",
+                                   "North America" = "North America"),
+                       selected = c("Africa", "Asia", "Australia", "Europe", "North America"))
+
+    selectInput(inputId = "grp",
+                label = "Grouping variable:",
+                choices = c("Family" = "HostFamily",
+                            "Environment" = "HostEnvironment"))
 ```
 
-***
+Column {data-width=275}
+-------------------------------------
+#### <font size="5"> Why are animals from some taxonomic families especially vulnerable to parasites?</font> 
 
-Placeholder for longer descriptive text for the THREATS BY FAMILY story panel...put longer commentary here
+<font size="4"> These interactive plots illustrate how mammals from some taxonomic families are more vulnerable to deadly parasites. In particular, carnivores in the Canidae, Otariidae, and Phocidae were likely to have deadly parasites. In ungulates, many families have a high proportion of threatened species overall but those in Bovidae were most likely to have deadly parasites.
 
-### Threats by continent... 
+These families include all major groups of domesticated livestock (dogs, cats, goats, sheep, cattle, and pigs) showing the dangers of cross-species transmission that pets and livestock pose to closely related wild species.</font> 
 
-```{r plot3}
-readRDS("shiny-figures_files/plot_byCont.RDS")
+```{r plot_host}
+
+renderPlotly({
+  validate(need(!is.null(input$mamOrd), message = FALSE),
+           need(!is.null(input$contin), message = FALSE),
+           need(!is.null(input$homerange), message = FALSE),
+           need(!is.null(input$masskg), message = FALSE),
+           need(!is.null(input$grp), message = FALSE),
+           need(!is.null(Out_list$mammals), message = FALSE))
+  
+  foo <- mammals %>%
+    filter(Group %in% input$mamOrd) %>%
+    filter(continent %in% input$contin) %>%
+    filter(hostHomeRange <= input$homerange) %>%
+    filter(massKG <= input$masskg) %>%
+    group_by(.dots=input$grp, type) %>%
+    tally() %>% data.frame()
+  
+  # needs to be evaluated as a string
+  ggplot(foo, aes_string(fill = "type", y = "n", x = input$grp)) +
+        geom_bar(stat="identity", position = "fill") +
+        labs(x="", y="", fill="")  +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15)) -> p
+  ggplotly(p)
+})
 ```
 
-***
+Column {data-width=10}
+-------------------------------------
 
-Placeholder for longer descriptive text for the THREATS BY CONTINENT story panel...put longer commentary here
+Explore Parasites
+====================================== 
+Inputs {.sidebar data-width=250}
+-------------------------------------
 
-### Threats by body mass... 
-
-```{r plot4}
-readRDS("shiny-figures_files/plot_byMass.RDS")
-```
-
-***
-
-Placeholder for longer descriptive text for the THREATS BY MASS story panel...put longer commentary here
-
-### Threats by home range... 
-
-```{r plot5}
-readRDS("shiny-figures_files/plot_byHR.RDS")
-```
-
-***
-
-Placeholder for longer descriptive text for the THREATS BY HOME RANGE story panel...put longer commentary here
-
-Explore maps...
+Map the Host Data
 ====================================== 
 Inputs {.sidebar data-width=250}
 -------------------------------------
