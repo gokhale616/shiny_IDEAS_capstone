@@ -3,16 +3,13 @@ library(shiny)
 library(tidyverse)
 library(magrittr)
 library(plotly)
-setwd("~/Desktop/shiny_IDEAS_capstone-master/paige")
+#setwd("~/Desktop/shiny_IDEAS_capstone-master/paige")
 ################################################################################################# 
 ######## with continuous variable side bars #####################################################
 #################################################################################################
 app <- shinyApp(
   ui = fluidPage(
 
-    sliderInput(inputId = "masskg",
-                label = "Mammal Mass (Kg):",
-                value = c(0.5, 1000), min = 0.5, max = 1000),
 
     checkboxGroupInput(inputId = "mamOrd",
                        label = "Mammal order:",
@@ -44,6 +41,10 @@ app <- shinyApp(
     sliderInput(inputId = "homerange",
                 label = "Mammal home range (km sqrd.)",
                 value = c(0.02, 77500), min = 0.02, max = 77500),
+    
+    sliderInput(inputId = "masskg",
+                label = "Mammal Mass (Kg):",
+                value = c(0.5, 1000), min = 0.5, max = 1000),
 
     plotlyOutput("plot")
   ),
@@ -118,7 +119,7 @@ app <- shinyApp(
           theme_void() + 
           theme(legend.text=element_text(size=rel(1.5)),
                 strip.text = element_text(size=18), 
-                axis.text.x = element_text(angle = 90, hjust = 1, size = 10), 
+                axis.text.x = element_text(angle = 45, hjust = 1, size = 10), 
                 panel.spacing = unit(2, "lines"))
       }
         
