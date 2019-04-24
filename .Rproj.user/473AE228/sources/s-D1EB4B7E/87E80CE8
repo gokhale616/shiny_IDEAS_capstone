@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1743190157",
+    "hash" : "0",
     "id" : "87E80CE8",
-    "lastKnownWriteTime" : 1556054485,
-    "last_content_update" : 1556054485729,
+    "lastKnownWriteTime" : 1556065981,
+    "last_content_update" : 1556065981993,
     "path" : "~/Desktop/shiny_IDEAS_capstone/paige/host.R",
     "project_path" : "paige/host.R",
     "properties" : {
-        "cursorPosition" : "56,0",
-        "scrollLine" : "38"
+        "cursorPosition" : "37,33",
+        "scrollLine" : "35"
     },
     "relative_order" : 1,
     "source_on_save" : false,
