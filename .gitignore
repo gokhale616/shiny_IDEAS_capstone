@@ -2,5 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
 shiny-figures.tex
 .DS_Store
+=======
+>>>>>>> e2819e5769c69cd4103362d28c8cc5ab523aa818

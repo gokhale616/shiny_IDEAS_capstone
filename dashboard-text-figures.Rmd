@@ -7,7 +7,7 @@ editor_options:
 header-includes: \usepackage[section]{placeins}
 ---
 
-Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) died course of a few days. [Researchers called these events](https://www.theatlantic.com/science/archive/2018/01/why-did-two-thirds-of-this-weird-antelope-suddenly-drop-dead/550676/?utm_source=twb) "unprecedented and unworldly". A bacterium, _Pasteurella multocida_, isolated from the blood of these animals was the cause. ![_Saiga tatarica_. Image from IUCN.](saiga-IUCN.jpg){height=250px}
+Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) died course of a few days. [Researchers called these events](https://www.theatlantic.com/science/archive/2018/01/why-did-two-thirds-of-this-weird-antelope-suddenly-drop-dead/550676/?utm_source=twb) "unprecedented and unworldly". A bacterium, _Pasteurella multocida_, isolated from the blood of these animals was the cause. ![_Saiga tatarica_. Image from IUCN.](images/saiga-IUCN.jpg){height=250px}
 
 Saiga, a species previously decimated by poaching, are endangered like  many other wild animals. Threatening factors like poaching and habitat make animals more vulnerable to parasites. On top of being threatened by other factors, mammals are more likely to be impacted by parasitism as well [IUCN](iucnredlist.org). Since the the number of endangered animals is on the rise, understanding patterns of parasitism is important for conservationists and wildlife managers. 
 
@@ -28,7 +28,11 @@ Caption for host figure: The proportions of hosts that are threatened versus not
 
 # Why are some parasites more threatening? 
 
-TBD.
+These interactive plots illustrates how viruses and bacteria are some of the most deadly parasites for wild mammals, consistent with the idea that as host populations decrease, viruses and bacteria are better suited than macroparasites to spread across a wider range of hosts. We see indication of this by investigating the identities of these parasites: some of the most deadly bacteria and viruses (morbilliviruses, *Mycobacterium bovis*, and anthrax) affect many different host species.  In addition,  the sub-lethal affects of many helminths on hosts may not be explicitly captured in this database. 
+
+The second interactive plot (__not included in pilot dashboard__) shows that many threatening parasites are transmitted by close contact as opposed to transmitted by vectors or contaminated soil or water. Threatening parasites transmitted via close contact are often those associated with spillover from domesticated animals. These patterns hold relevance from a conservation standpoint: minimizing cross-species contact and overlap in resources used by wild and domesticated animals may reduce wildlife diseases. 
+
+Data shown on this page were collected from IUCN species descriptions (for details see Pederson et al., Conservation Biology, 2007).
 
 \newpage
 

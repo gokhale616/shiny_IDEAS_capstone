@@ -15,13 +15,25 @@ rm(list=ls())
 
 ### Load libraries -----
 # Will automatically install any libraries it can't find
-packages <- c("flexdashboard", "shiny", "knitr", "tidyverse", "magrittr", "leaflet", "RgoogleMaps", "shinyBS", "plotrix", "shinyjs", "cowplot", "plotly", "readxl", "DT")
-package.check <- lapply(packages, FUN = function(x) {
-  if (!require(x, character.only = TRUE)) {
-    install.packages(x, dependencies = TRUE, repos = "http://cran.us.r-project.org")
-    library(x, character.only = TRUE)
-  }
-})
+# packages <- c("flexdashboard", "shiny", "knitr", "tidyverse", "magrittr", "leaflet", "RgoogleMaps", "shinyBS", "plotrix", "shinyjs", "cowplot", "plotly", "readxl", "DT")
+# package.check <- lapply(packages, FUN = function(x) {
+#   if (!require(x, character.only = TRUE)) {
+#     install.packages(x, dependencies = TRUE, repos = "http://cran.us.r-project.org")
+#     library(x, character.only = TRUE)
+#   }
+# })
+
+library(flexdashboard)
+library(shiny)
+library(knitr)
+library(tidyverse)
+library(magrittr)
+library(leaflet)
+library(RgoogleMaps)
+library(shinyBS)
+library(plotrix)
+library(shinyjs)
+library(cowplot)
 
 opts_chunk$set(root.dir = getwd())
 mamDat <- read.csv("distinct-hosts-mod.csv")
@@ -47,9 +59,9 @@ Column {data-width=350}
 
 <font size="4"> Parasites--organisms that live in or on other species and typically cause harm--can have astonishing effects on their hosts. In 2015, over 200,000 saiga (*Saiga tatarica*, an antelope native to Central Asia) died in the course of a few days. Researchers called these events “unprecedented and un-worldly”. A bacterium, *Pasteurella multocida*, isolated from the blood of these animals, was the cause.
 
-Saiga, a species previously decimated by poaching, are endangered like many other wild animals today. Host animals are more likely to be negatively impacted by parasitism if they are already facing other stressors such as poaching and habitat loss. Since the the number of endangered and threatened animals is on the rise, understanding patterns of parasitism is important for identifying conservation strategies for imperiled host animals.
+Saiga, a species previously decimated by poaching, are endangered like many other wild animals today. Animals like the saiga antelope, that are already facing other stressors like poaching and habitat loss, are more likely to be negatively impacted by parasitism than non-threatened animals. Since the the number of endangered and threatened animals is on the rise, understanding patterns of parasitism is important for identifying conservation strategies for imperiled host animals.
 
-This dashboard is a resource for scientists and non-scientists alike to visualize patterns of parasitic disease in threatened host mammals. We focus on carnivore and ungulate host mammals because these two taxonomic orders include all major groups of domesticated livestock (dogs, cats, goats, sheep, cattle, and pigs), showing the dangers of cross-species transmission that pets and livestock pose to closely related wild species. Parasites include arthropods, bacteria, helminths, insecta, viruses, fungi, and protozoans.</font>
+This dashboard is a resource for scientists and non-scientists alike to visualize patterns of parasitic disease in threatened host mammals. We focus on carnivore and ungulate host mammals because these two taxonomic orders include all major groups of domesticated livestock (dogs, cats, goats, sheep, cattle, and pigs), showing the dangers of cross-species transmission that pets and livestock pose to closely related wild species. Parasites include arthropods, bacteria, helminths, insects, viruses, fungi, and protozoans.</font>
 
 #### <font size="4"> Explore:</font>
 
@@ -104,7 +116,7 @@ Column {data-width=275}
 -------------------------------------
 #### <font size="5"> Why are mammals from some continents or taxonomic families more vulnerable to parasites?</font> 
 
-<font size="4"> This interactive plot illustrates how mammals from some geographies or taxonomic families are more vulnerable to deadly parasites. For example, we have more records of parasitic disease negatively impacting mommals in Africa and North America than in Europe and Asia. Among ungulates, species in the Bovidae family are more likely to harbor deadly parasites. Among carnivores, species in the Canidae family are more impacted by parasites. Data for individual host species are shown in the table below. Data shown on this page were collected from IUCN species descriptions (for details see Pederson et al., Conservation Biology, 2007).</font> 
+<font size="4"> This interactive plot illustrates how mammals from some geographies or taxonomic families are more vulnerable to deadly parasites. For example, we have more records of parasitic disease negatively impacting mammals in Africa and North America than in Europe and Asia. Among ungulates, species in the Bovidae family are more likely to harbor deadly parasites. Among carnivores, species in the Canidae family are more impacted by parasites. Data for individual host species are shown in the table below. Data shown on this page were collected from IUCN species descriptions (for details see Pederson et al., Conservation Biology, 2007).</font> 
 
 ```{r plot_host}
 
@@ -323,7 +335,11 @@ Column {data-width=275}
 -------------------------------------
 #### <font size="5"> Why are some parasites more threatening?</font> 
 
-<font size="4"> Placeholder text..................................... </font> 
+<font size="4"> These interactive plots illustrates how viruses and bacteria are some of the most deadly parasites for wild mammals, consistent with the idea that as host populations decrease, viruses and bacteria are better suited than macroparasites to spread across a wider range of hosts. We see indication of this by investigating the identities of these parasites: some of the most deadly bacteria and viruses (morbilliviruses, *Mycobacterium bovis*, and anthrax) affect many different host species.  In addition,  the sub-lethal affects of many helminths on hosts may not be explicitly captured in this database. 
+
+The second interactive plot (__not included in pilot dashboard__) shows that many threatening parasites are transmitted by close contact as opposed to transmitted by vectors or contaminated soil or water. Threatening parasites transmitted via close contact are often those associated with spillover from domesticated animals. These patterns hold relevance from a conservation standpoint: minimizing cross-species contact and overlap in resources used by wild and domesticated animals may reduce wildlife diseases. 
+
+Data shown on this page were collected from IUCN species descriptions (for details see Pederson et al., Conservation Biology, 2007). </font> 
 
 ```{r plot_parasites}
 
