@@ -2,6 +2,7 @@
 title: "GLOBAL MAMMALS DASHBOARD"
 output:
   flexdashboard::flex_dashboard:
+    source_code: embed
     orientation: columns
     vertical_layout: scroll
     theme: cerulean # can choose from: cosmo, bootstrap, cerulean, journal, flatly, readable, spacelab, united, lumen, paper, sandstone, simplex, yeti
