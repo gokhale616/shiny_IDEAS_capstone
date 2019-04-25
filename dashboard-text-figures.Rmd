@@ -7,7 +7,7 @@ editor_options:
 header-includes: \usepackage[section]{placeins}
 ---
 
-Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) died course of a few days. [Researchers called these events](https://www.theatlantic.com/science/archive/2018/01/why-did-two-thirds-of-this-weird-antelope-suddenly-drop-dead/550676/?utm_source=twb) "unprecedented and unworldly". A bacterium, _Pasteurella multocida_, isolated from the blood of these animals was the cause. ![_Saiga tatarica_. Image from IUCN.](saiga-IUCN.jpg){height=250px}
+Parasites can have astonishing effects on their hosts. Just recently, over 200,000 saiga (antelope native to Central Asia) died course of a few days. [Researchers called these events](https://www.theatlantic.com/science/archive/2018/01/why-did-two-thirds-of-this-weird-antelope-suddenly-drop-dead/550676/?utm_source=twb) "unprecedented and unworldly". A bacterium, _Pasteurella multocida_, isolated from the blood of these animals was the cause. ![_Saiga tatarica_. Image from IUCN.](images/saiga-IUCN.jpg){height=250px}
 
 Saiga, a species previously decimated by poaching, are endangered like  many other wild animals. Threatening factors like poaching and habitat make animals more vulnerable to parasites. On top of being threatened by other factors, mammals are more likely to be impacted by parasitism as well [IUCN](iucnredlist.org). Since the the number of endangered animals is on the rise, understanding patterns of parasitism is important for conservationists and wildlife managers. 
 
